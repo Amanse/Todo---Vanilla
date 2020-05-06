@@ -57,7 +57,13 @@ function checkBoxClick(el) {
 //});
 
 function getTasks() {
-  var tasks = JSON.parse(localStorage.getItem("tasks"));
+  var tasks = "";
+  if (localStorage.getItem("tasks") == "") {
+    localStorage.setItem("tasks", "[]");
+    location.reload();
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
+  }
   document.getElementById("taskShow").innerHTML = "";
   tasks.forEach(function (task, index) {
     let completedTask = "";
