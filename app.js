@@ -58,7 +58,7 @@ function checkBoxClick(el) {
 
 function getTasks() {
   var tasks = "";
-  if (localStorage.getItem("tasks") == "") {
+  if (localStorage.getItem("tasks") == null) {
     localStorage.setItem("tasks", "[]");
     location.reload();
   } else {
