@@ -1,0 +1,52 @@
+<html>
+<head>
+  <title>HOLLA</title>
+<style>
+  #taskShow { 
+    color: white;
+    margin: 60px;
+    border: 2px;
+  }
+  .task { 
+    opacity: 60%
+  }
+  body {
+    margin: 0;
+    border: 0;
+    background: #f42069;
+  }
+  .status{
+    background: #b4da55;
+    color: white;
+  }
+  .taskAdd {
+    background: #b4da55;
+    color: white;
+    border-radius: 9px;
+  }
+  #task {
+    margin-top:30px;
+    margin-left: 30px;
+    width: 50vh;
+    border: 2px;
+    height: 40px;
+    padding: 2px;
+    border-radius: 4px;
+    border-color: red;
+  }
+  .checked{
+    text-decoration: line-through;
+    opacity: 25%;
+    color: #111;
+  }
+</style>
+</head>
+<body >
+  <form id="form" >
+    <input type="text" placeholder="task" id="task" />
+    <button class="taskAdd" type="submit">Add Tast</button>
+  </form>
+  <div id="taskShow" ></div>
+  <script src="app.js"></script>
+</body>
+</html>
