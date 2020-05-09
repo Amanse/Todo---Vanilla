@@ -3,7 +3,7 @@ document.getElementById("form").addEventListener(
   "submit",
   function (event) {
     event.preventDefault();
-    var taskTitle = document.getElementById("task").value;
+    let taskTitle = document.getElementById("task").value;
     var oldTasks = [];
     oldTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     let lastId = oldTasks.length;
@@ -15,6 +15,7 @@ document.getElementById("form").addEventListener(
     oldTasks.push(task);
     localStorage.setItem("tasks", JSON.stringify(oldTasks));
     getTasks();
+    taskTitle.value = "";
   },
   true
 );
@@ -33,29 +34,12 @@ function checkBoxClick(el) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
   getTasks();
 }
-//let checkBoxes = document.getElementsByName("checkbox");
-//checkBoxes.forEach((checkbox) => {
-//  checkbox.addEventListener(
-//    "change",
-//    function () {
-//      console.log(this.value);
-//      taskList = JSON.parse(localStorage.getItem("tasks"));
-//     taskList.forEach((task) => {
-//        if (task.id == this.value) {
-//          if (task.completed) {
-//            task.completed = false;
-//          } else {
-//            task.completed = true;
-//         }
-//        }
-//      });
-//      localStorage.setItem("tasks", JSON.stringify(taskList));
-//      getTasks();
-//    },
-//    true
-//  );
-//});
-
+function deleteTask(id) {
+  let taskList = JSON.parse(localStorage.getItem("tasks"));
+  let newTaskList = taskList.filter((task) => task.id != id);
+  localStorage.setItem("tasks", JSON.stringify(newTaskList));
+  getTasks();
+}
 function getTasks() {
   var tasks = "";
   if (localStorage.getItem("tasks") == null) {
@@ -78,7 +62,9 @@ function getTasks() {
     document.getElementById("taskShow").innerHTML +=
       "<h2 style='" +
       checked +
-      "'>" +
+      "'><span onclick='deleteTask(" +
+      task.id +
+      ")' class='delete'>X</span>" +
       task.title +
       "<input type='checkbox' value='" +
       task.id +
