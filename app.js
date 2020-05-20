@@ -1,4 +1,10 @@
+//Init variables
+let editMode = false;
+
+//Get tasks from local storage on page load
 getTasks();
+
+//Add a new task to the loacal storage
 document.getElementById("form").addEventListener(
   "submit",
   function (event) {
@@ -20,6 +26,7 @@ document.getElementById("form").addEventListener(
   true
 );
 
+//Check a task done
 function checkBoxClick(el) {
   taskList = JSON.parse(localStorage.getItem("tasks"));
   taskList.forEach((task) => {
@@ -34,12 +41,20 @@ function checkBoxClick(el) {
   localStorage.setItem("tasks", JSON.stringify(taskList));
   getTasks();
 }
+
+//Delete Task
 function deleteTask(id) {
   let taskList = JSON.parse(localStorage.getItem("tasks"));
   let newTaskList = taskList.filter((task) => task.id != id);
   localStorage.setItem("tasks", JSON.stringify(newTaskList));
   getTasks();
 }
+
+//TODO
+//Turn on edit mode and change form
+function editModeOn() {}
+
+//Get tasks from local storage and show them, also contains the checkbox and edit title and ofc deleteTask, to be ran at page load
 function getTasks() {
   var tasks = "";
   if (localStorage.getItem("tasks") == null) {
@@ -64,9 +79,9 @@ function getTasks() {
       checked +
       "'><span onclick='deleteTask(" +
       task.id +
-      ")' class='delete'>X</span>" +
+      ")' class='delete'>X</span><span onclick='editModeOn()'>" +
       task.title +
-      "<input type='checkbox' value='" +
+      "</span><input type='checkbox' value='" +
       task.id +
       "' id='checkbox'" +
       completedTask +
