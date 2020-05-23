@@ -48,7 +48,6 @@ function deleteTask(id) {
   getTasks();
 }
 
-//TODO
 //Turn on edit mode and change form
 function editModeOn(el) {
   let taskList = JSON.parse(localStorage.getItem("tasks"));
@@ -62,7 +61,6 @@ function editModeOn(el) {
   getTasks();
 }
 
-//TODO
 //Change Task
 function changeTask(id) {
   let taskList = JSON.parse(localStorage.getItem("tasks"));
